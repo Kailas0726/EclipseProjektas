@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+	    <style>
+    
+    		table{
+			border-collapse: collapse;
+			}
+			
+			th, td{
+			border: 1px solid red;
+			padding: 8px;
+			}
+			
+    </style>
+        
+</head>
+    
+<body>
+
+    <div id="lentele">
+    	<table>
+    
+    		<tr><th>x</th><th>y</th><th>radius</th></tr>
+    	
+    		<tr th:each="apskritimas : ${apskritimai}">
+    			<td th:text="${apskritimas.x}"></td>
+    			<td th:text="${apskritimas.y}"></td>
+  				<td th:text="${apskritimas.radius}"></td>
+  			</tr>
+  		
+  		</table>
+ 	</div>
+ 	
+</body>
+</html>
