@@ -9,20 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import geometrija.Apskritimas;
+import geometrija.Zaidimas;
 
 @Controller
 public class AjaxController {
+
 
 	@GetMapping("/apskritimai")
 	@ResponseBody
 	public ArrayList<Apskritimas> apskritimai() {
 		
-		// Apskritimas apskritimas = new Apskritimas ( 5.0, 7.2, 4.1 );
-		ArrayList<Apskritimas> apskritimai = new ArrayList<Apskritimas>();
+		Zaidimas zaidimas = new Zaidimas();
 		
-		for ( int i = 0; i < 20; i++ ) {
-			apskritimai.add(new Apskritimas(-100, 100, -100, 100, 100));
-		}
+		zaidimas.apskritimuNuskaitymas();
+		
+		ArrayList<Apskritimas> apskritimai = zaidimas.pasiimtiApskritimus();
 		
 		return apskritimai;
 	}
