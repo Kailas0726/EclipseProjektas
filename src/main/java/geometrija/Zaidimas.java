@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Zaidimas {
 	
 	ArrayList<Apskritimas> apskritimai = new ArrayList<Apskritimas>();
+	//ArrayList<Apskritimas> zaidejoapskritimai = new ArrayList<Apskritimas>();
 
 	public Zaidimas(ArrayList<Apskritimas> apskritimai) {
 		
@@ -24,39 +25,49 @@ public class Zaidimas {
 		
 	}
 	
-	public void apskritimuIssaugojimas( ArrayList<Apskritimas> perduoti_apskritimai ) throws IOException {
+	public void apskritimuIssaugojimas() throws IOException {
 		
-		FileWriter issaugojimas = new FileWriter("duomenu_issaugojimas/isaugomi_apskritimai.csv");
+		try {
+			
+			FileWriter issaugojimas = new FileWriter("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+			
+			for (int i = 0; i < apskritimai.size(); i++) {
+			
+			issaugojimas.write("" + apskritimai.get(i).getX() + ",");
+			issaugojimas.write("" + apskritimai.get(i).getY() + ",");
+			issaugojimas.write("" + apskritimai.get(i).getRadius() + "\n");
 		
-		for (int i = 0; i < apskritimai.size(); i++) {
-		
-		issaugojimas.write("" + perduoti_apskritimai.get(i).getX() + ",");
-		issaugojimas.write("" + perduoti_apskritimai.get(i).getY() + ",");
-		issaugojimas.write("" + perduoti_apskritimai.get(i).getRadius() + "\n");
-	
+			}
+			
+			issaugojimas.close();
+			//this.apskritimai = perduoti_apskritimai;
+			
+		}catch (IOException e) {
+			
+			e.printStackTrace();
+			
 		}
 		
-		issaugojimas.close();
-		this.apskritimai = perduoti_apskritimai;
 	}
 	
-	public void zaidejoApskritimoIssaugojimas(Apskritimas apskritimas) throws IOException {
+	public void zaidejoApskritimoIssaugojimas() throws IOException {
 		
-		FileWriter zaidejoIssaugojimas = new FileWriter("duomenu_issaugojimas/issaugomi_zaidejo_apskritimai.csv", true);
+		FileWriter zaidejoIssaugojimas = new FileWriter("duomenu_issaugojimas/issaugomi_apskritimai.csv", true);
 		
-		zaidejoIssaugojimas.write("" + apskritimas.getX() + ",");
-		zaidejoIssaugojimas.write("" + apskritimas.getY() + ",");
-		zaidejoIssaugojimas.write("" + apskritimas.getRadius() + "\n");
+		zaidejoIssaugojimas.write(""+apskritimai.get(apskritimai.size()-1).getX()+",");
+		zaidejoIssaugojimas.write(""+apskritimai.get(apskritimai.size()-1).getY()+",");
+		zaidejoIssaugojimas.write(""+apskritimai.get(apskritimai.size()-1).getRadius()+ "\n");
+		
 		
 		zaidejoIssaugojimas.close();
 	}
 	
-	public void apskritimuNuskaitymas() {
+	public void apskritimuNuskaitymas(String nuskaitymoFailas) {
 		
 	
 		try {
 			
-			File failas = new File("duomenu_issaugojimas/issaugomi_zaidejo_apskritimai.csv");
+			File failas = new File(nuskaitymoFailas);
 		
 			Scanner nuskaitymas;
 		
@@ -85,7 +96,7 @@ public class Zaidimas {
 	
 	public void apskritimuSukurimas() {
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			
 			apskritimai.add(new Apskritimas(-100, 100, -100, 100, 100));
 			

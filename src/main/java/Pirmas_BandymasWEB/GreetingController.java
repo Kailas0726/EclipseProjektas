@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
 import geometrija.Apskritimas;
+import geometrija.Zaidimas;
 
 @Controller
 public class GreetingController {
@@ -17,28 +18,40 @@ public class GreetingController {
 	@RequestMapping("/greeting")
 	public String greeting(
 			@RequestParam(name="name", required=false, defaultValue="World") String name, 
-			@RequestParam(name="sukurimas", required=false, defaultValue="World")String sukurk,
-			@RequestParam(name="xkoor", required=false, defaultValue="0")Double x,
-			@RequestParam(name="ykoor", required=false, defaultValue="0")Double y,
-			@RequestParam(name="radius", required=false, defaultValue="0")Double radius,
+			@RequestParam(name="sukurimas", required=false, defaultValue="world") String sukurk,
+			@RequestParam(name="xkoor", required=false, defaultValue="0") Double x,
+			@RequestParam(name="ykoor", required=false, defaultValue="0") Double y,
+			@RequestParam(name="radius", required=false, defaultValue="0") Double radius,
 			Model model)
 	{
 		model.addAttribute("name", name);
-		ArrayList<Apskritimas> apskritimai = new ArrayList<Apskritimas>();
+		Zaidimas zaidimas = new Zaidimas();
+		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+		ArrayList<Apskritimas> apskritimai = zaidimas.pasiimtiApskritimus();
 		
-		/*for ( int i = 0; i < 20; i++ ) {
-			
-			apskritimai.add(new Apskritimas(-100, 100, -100, 100, 100));
-			
-		}*/
+		try {
+	
 		
-		if(sukurk != null) {
+			if(sukurk.equals("sukurk")) {
+				
+				zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+				apskritimai.add(new Apskritimas(x, y, radius));
+				zaidimas.zaidejoApskritimoIssaugojimas();
+				
+			}else {
+				
+				System.out.println("prideti nepavyko");
+				
+			}
 			
-			apskritimai.add(new Apskritimas(x, y, radius));
+		
+		}catch(Exception e){
+		
+			e.printStackTrace();
 			
 		}
 		
-		model.addAttribute("apskritimai", apskritimai);
+		model.addAttribute("apskritimai", zaidimas.pasiimtiApskritimus());
 		
 		return "greeting";
 

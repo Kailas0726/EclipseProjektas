@@ -1,5 +1,6 @@
 package Pirmas_BandymasWEB;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,18 @@ public class AjaxController {
 
 	@GetMapping("/apskritimai")
 	@ResponseBody
-	public ArrayList<Apskritimas> apskritimai() {
+	public ArrayList<Apskritimas> apskritimai() throws IOException {
 		
 		Zaidimas zaidimas = new Zaidimas();
 		
-		zaidimas.apskritimuNuskaitymas();
+		zaidimas.apskritimuSukurimas();
+		
+		zaidimas.apskritimuIssaugojimas();
+		
+		//zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
 		
 		ArrayList<Apskritimas> apskritimai = zaidimas.pasiimtiApskritimus();
-		
+			
 		return apskritimai;
 	}
 	
