@@ -18,7 +18,20 @@ public class AjaxController {
 
 	@GetMapping("/apskritimai")
 	@ResponseBody
-	public ArrayList<Apskritimas> apskritimai() throws IOException {
+	
+	public ArrayList<Apskritimas> apskritimai() throws IOException{
+		
+		Zaidimas zaidimas = new Zaidimas();
+	
+		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+
+		ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
+		
+		return apskritimai;
+	
+	}
+	
+	public void	apskritimaiAntrasMetodas() throws IOException{
 		
 		Zaidimas zaidimas = new Zaidimas();
 		
@@ -26,11 +39,7 @@ public class AjaxController {
 		
 		zaidimas.apskritimuIssaugojimas();
 		
-		//zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
 		
-		ArrayList<Apskritimas> apskritimai = zaidimas.pasiimtiApskritimus();
-			
-		return apskritimai;
 	}
 	
 }

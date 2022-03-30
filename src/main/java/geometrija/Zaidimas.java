@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Zaidimas {
 	
 	ArrayList<Apskritimas> apskritimai = new ArrayList<Apskritimas>();
-	//ArrayList<Apskritimas> zaidejoapskritimai = new ArrayList<Apskritimas>();
 
 	public Zaidimas(ArrayList<Apskritimas> apskritimai) {
 		
@@ -104,7 +103,7 @@ public class Zaidimas {
 		
 	}
 	
-	public ArrayList<Apskritimas> pasiimtiApskritimus(){
+	public ArrayList<Apskritimas> getApskritimai(){
 		
 		return apskritimai;
 		

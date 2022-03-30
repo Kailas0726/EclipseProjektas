@@ -27,23 +27,18 @@ public class GreetingController {
 		model.addAttribute("name", name);
 		Zaidimas zaidimas = new Zaidimas();
 		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
-		ArrayList<Apskritimas> apskritimai = zaidimas.pasiimtiApskritimus();
+		ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
 		
 		try {
 	
 		
 			if(sukurk.equals("sukurk")) {
 				
-				zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+				//zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
 				apskritimai.add(new Apskritimas(x, y, radius));
 				zaidimas.zaidejoApskritimoIssaugojimas();
 				
-			}else {
-				
-				System.out.println("prideti nepavyko");
-				
 			}
-			
 		
 		}catch(Exception e){
 		
@@ -51,7 +46,7 @@ public class GreetingController {
 			
 		}
 		
-		model.addAttribute("apskritimai", zaidimas.pasiimtiApskritimus());
+		model.addAttribute("apskritimai", zaidimas.getApskritimai());
 		
 		return "greeting";
 

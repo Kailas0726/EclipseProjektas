@@ -26,10 +26,8 @@
     
     <script>
 		$( document ).ready( function() {
-    	
-    		$( '#piesk' ).click ( function() {
-    			
-    			function piesti ( remelis, apskritimai ){
+
+			function piesti ( remelis, apskritimai ){
     			
     				var canvas = document.getElementById(remelis);
 					var ctx = canvas.getContext("2d");
@@ -83,6 +81,9 @@
     			
     			}
     			
+    	
+    		$( '#piesk' ).click ( function() {
+    			
 				$.ajax(
 					{
 						
@@ -95,7 +96,20 @@
 				  		});
 				 	}
 				);
-    		});								    		
+				
+				$( '#zaisk' ).click ( function() {
+    			
+				$.ajax(
+					{
+						
+						url: '/apskritimai'
+						,}).done(function(apskritimai){
+									    		
+				  		});
+				 	}
+				);
+				
+    	});								    		
 		//});
 		
     </script>
@@ -105,7 +119,9 @@
     <p th:text="'Hello, ' + ${name} + '!'" /> <br>
     
     <input type="button" id="piesk" value="Piesti">
-
+	
+	<input type="button" id="zaisk" value="Zaisti">
+	
  	<br>
  	
     <div id="lentele">
@@ -119,7 +135,7 @@
 	 
 	 <br>
 
-	 <form method="post" action="" id="sukurimo_forma">
+	 <form method="post" action="">
 	 	<label for ="xkoor">X koordinates</label><br>
 		<input type="text" name="xkoor" id="xkoor" value"">
 		<br>
@@ -130,7 +146,7 @@
 		<input type="text" name="radius" id="radius" value"">
 		<br>
 		<input type="hidden" name="sukurimas" value="sukurk">
-		<input type="submit" id="sukurk" value="Prideti">
+		<input type="submit" id="sukurk" value="Prideti" name="sukurk">
 	 </form>
 
 	 <br>
