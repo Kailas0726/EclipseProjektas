@@ -1,7 +1,7 @@
 package Pirmas_BandymasWEB;
 
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
@@ -9,29 +9,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import geometrija.Apskritimas;
+//import geometrija.Apskritimas;
 import geometrija.Zaidimas;
 
 @Controller
 public class AjaxController {
 
 
-	@GetMapping("/apskritimai")
+	@GetMapping("/zaidimas")
 	@ResponseBody
 	
-	public ArrayList<Apskritimas> apskritimai() throws IOException{
+	public Zaidimas apskritimai() throws IOException{
 		
 		Zaidimas zaidimas = new Zaidimas();
-	
-		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
-
-		ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
 		
-		return apskritimai;
+		//zaidimas.apskritimuSukurimas();
+		
+		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+		
+		//zaidimas.plotoSkaiciavimas();
+		
+		zaidimas.zaidejuPlotoSkaiciavimas();
+
+		//ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
+		
+		return zaidimas;
 	
 	}
 	
-	public void	apskritimaiAntrasMetodas() throws IOException{
+	/*public void	apskritimaiAntrasMetodas() throws IOException{
 		
 		Zaidimas zaidimas = new Zaidimas();
 		
@@ -40,6 +46,6 @@ public class AjaxController {
 		zaidimas.apskritimuIssaugojimas();
 		
 		
-	}
+	}*/
 	
 }

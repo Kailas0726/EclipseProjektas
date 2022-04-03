@@ -5,6 +5,7 @@ public class Apskritimas {
 	protected double x;
 	protected double y;
 	protected double radius;
+	protected double plotas;
 	
 	public Apskritimas(double x, double y, double radius) {
 		
@@ -61,6 +62,16 @@ public class Apskritimas {
 	public void setRadius(double radius) {
 		
 		this.radius = radius;
+	}
+	public double getPlotas() {
+		
+		return plotas;
+	}
+	public Apskritimas setPlotas() {
+		
+		plotas = Math.PI * radius * radius;
+		
+		return this;
 	}
 
 	@Override

@@ -9,17 +9,22 @@
     
     		table{
     		
-			border-collapse: collapse;
+				border-collapse: collapse;
 			
 			}
 			
 			th, td{
 			
-			border: 1px solid red;
-			padding: 8px;
+				border: 1px solid red;
+				padding: 8px;
 			
 			}
 			
+			#remelis{
+			
+				
+			
+			}
     </style>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -59,7 +64,7 @@
     				
     			}
     			
-    			function apskritimu_lentele ( id_lenteles, apskritimai){
+    			function apskritimu_lentele ( id_lenteles, apskritimai, taskai){
     			
     				lentele = '<table><tr><th>x</th><th>y</th><th>radius</th></tr>';
 									    			
@@ -74,7 +79,9 @@
 					}
 		
 					lentele += '</table>';
-		
+					
+					lentele += 'Tasku kiekis : ' + taskai;
+					 
 					apskritimai = document.getElementById( id_lenteles );
 		
 					apskritimai.innerHTML = lentele;
@@ -87,17 +94,17 @@
 				$.ajax(
 					{
 						
-						url: '/apskritimai'
-						,}).done(function(apskritimai){
-						piesti ( 'remelis', apskritimai );
-						apskritimu_lentele ( 'lentele', apskritimai );
+						url: '/zaidimas'
 						
-									    		
-				  		});
-				 	}
-				);
+						}).done(function(zaidimas){
+							console.log(zaidimas);
+							piesti ( 'remelis', zaidimas.apskritimai );
+							apskritimu_lentele ( 'lentele', zaidimas.apskritimai, zaidimas.taskai);		    		
+		  			}
+		  		);
+		 	});
 				
-				$( '#zaisk' ).click ( function() {
+				/*$( '#zaisk' ).click ( function() {
     			
 				$.ajax(
 					{
@@ -107,7 +114,7 @@
 									    		
 				  		});
 				 	}
-				);
+				);*/
 				
     	});								    		
 		//});
@@ -119,8 +126,6 @@
     <p th:text="'Hello, ' + ${name} + '!'" /> <br>
     
     <input type="button" id="piesk" value="Piesti">
-	
-	<input type="button" id="zaisk" value="Zaisti">
 	
  	<br>
  	
@@ -150,6 +155,11 @@
 	 </form>
 
 	 <br>
+	 
+	 <form method="post" action="">
+	 	<input type="hidden" name="zaidimas" value="zaisk">
+		<input type="submit" id="zaisk" value="Zaisti is naujo" name="zaisk">
+	 </form>
 	
 </body>
 </html>

@@ -22,11 +22,13 @@ public class GreetingController {
 			@RequestParam(name="xkoor", required=false, defaultValue="0") Double x,
 			@RequestParam(name="ykoor", required=false, defaultValue="0") Double y,
 			@RequestParam(name="radius", required=false, defaultValue="0") Double radius,
+			@RequestParam(name="zaidimas", required=false, defaultValue="0") String zaisk,
 			Model model)
 	{
 		model.addAttribute("name", name);
 		Zaidimas zaidimas = new Zaidimas();
 		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
+		//zaidimas.plotoSkaiciavimas();
 		ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
 		
 		try {
@@ -37,7 +39,16 @@ public class GreetingController {
 				//zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
 				apskritimai.add(new Apskritimas(x, y, radius));
 				zaidimas.zaidejoApskritimoIssaugojimas();
+				//zaidimas.apskritimuIstrinimas();
 				
+			}
+			
+			if(zaisk.equals("zaisk")) {
+				
+				zaidimas.apskritimuIstrinimas();
+				zaidimas.failoSukurimas();
+				zaidimas.apskritimuSukurimas();
+				zaidimas.apskritimuIssaugojimas();
 			}
 		
 		}catch(Exception e){
@@ -45,7 +56,7 @@ public class GreetingController {
 			e.printStackTrace();
 			
 		}
-		
+		zaidimas.zaidejuPlotoSkaiciavimas();
 		model.addAttribute("apskritimai", zaidimas.getApskritimai());
 		
 		return "greeting";
