@@ -14,6 +14,7 @@ public class Zaidimas {
 	protected boolean ar_persidengia = false;
 	protected int sugeneruotu_apskritimu_kiekis = 2;
 	protected int taskai = 0;
+	//protected boolean baigti_zaidimas = true;
 
 	public Zaidimas(ArrayList<Apskritimas> apskritimai) {
 		
@@ -132,15 +133,17 @@ public class Zaidimas {
 
 		int i = 0;
 		
-		while (( i < apskritimai.size()) && !ar_persidengia) {
+		if (sugeneruotu_apskritimu_kiekis < apskritimai.size()) {
+		
+			while (( i < apskritimai.size()) && !ar_persidengia) {
 			
-			ar_persidengia = apskritimai.get(i).arPersidengia(apskritimai.get(apskritimai.size()-1));
+			 	ar_persidengia = apskritimai.get(i).arPersidengia(apskritimai.get(apskritimai.size()-1));
 			
-			 i++;
+			 	i++;
+			}
 		}
 		
 		return ar_persidengia;
-		
 	}
 	
 	public void plotoSkaiciavimas() {
@@ -152,23 +155,38 @@ public class Zaidimas {
 		
 	}
 	
-
 	public int getTaskai() {
+		
 		return taskai;
+		
 	}
 
 	public void setTaskai(int taskai) {
+		
 		this.taskai = taskai;
+		
 	}
 	
-	public void zaidejuPlotoSkaiciavimas(){
+	public boolean getArPersidengia() {
 		
-		for (int i = sugeneruotu_apskritimu_kiekis - 1; i < apskritimai.size(); i++) {
+		return ar_persidengia;
+		
+	}
+	
+	public void zaidejuPlotoSkaiciavimas() {
+		
+		for (int i = sugeneruotu_apskritimu_kiekis - 1; i < apskritimai.size()-1; i++) {
 			
-			taskai += apskritimai.get(i).setPlotas().getPlotas();
-			//System.out.println(taskai);
+			taskai += apskritimai.get(apskritimai.size()-1).setPlotas().getPlotas();
+			
 		}
 
+	}
+	
+	public void pridetiApskritimas(double x, double y, double radius) {
+		
+		apskritimai.add(new Apskritimas(x, y, radius));
+		
 	}
 	
 }

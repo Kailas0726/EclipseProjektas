@@ -99,25 +99,22 @@
 						}).done(function(zaidimas){
 							console.log(zaidimas);
 							piesti ( 'remelis', zaidimas.apskritimai );
-							apskritimu_lentele ( 'lentele', zaidimas.apskritimai, zaidimas.taskai);		    		
-		  			}
-		  		);
+							apskritimu_lentele ( 'lentele', zaidimas.apskritimai, zaidimas.taskai);	
+							
+							if (zaidimas.arPersidengia) {
+								
+								$('#paslepti').hide(); 
+								
+							}
+							   		
+		  					});
+						 
+						        
+						    
+				//});
 		 	});
-				
-				/*$( '#zaisk' ).click ( function() {
-    			
-				$.ajax(
-					{
-						
-						url: '/apskritimai'
-						,}).done(function(apskritimai){
-									    		
-				  		});
-				 	}
-				);*/
-				
+
     	});								    		
-		//});
 		
     </script>
     
@@ -140,7 +137,7 @@
 	 
 	 <br>
 
-	 <form method="post" action="">
+	 <form method="post" action="" id="paslepti">
 	 	<label for ="xkoor">X koordinates</label><br>
 		<input type="text" name="xkoor" id="xkoor" value"">
 		<br>

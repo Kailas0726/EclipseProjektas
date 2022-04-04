@@ -1,6 +1,6 @@
 package Pirmas_BandymasWEB;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
-import geometrija.Apskritimas;
+//import geometrija.Apskritimas;
 import geometrija.Zaidimas;
 
 @Controller
@@ -29,7 +29,7 @@ public class GreetingController {
 		Zaidimas zaidimas = new Zaidimas();
 		zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
 		//zaidimas.plotoSkaiciavimas();
-		ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
+		//ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
 		
 		try {
 	
@@ -37,8 +37,10 @@ public class GreetingController {
 			if(sukurk.equals("sukurk")) {
 				
 				//zaidimas.apskritimuNuskaitymas("duomenu_issaugojimas/issaugomi_apskritimai.csv");
-				apskritimai.add(new Apskritimas(x, y, radius));
+				//apskritimai.add(new Apskritimas(x, y, radius));
+				zaidimas.pridetiApskritimas(x, y, radius);
 				zaidimas.zaidejoApskritimoIssaugojimas();
+				zaidimas.arPersidengia();
 				//zaidimas.apskritimuIstrinimas();
 				
 			}
@@ -57,7 +59,7 @@ public class GreetingController {
 			
 		}
 		zaidimas.zaidejuPlotoSkaiciavimas();
-		model.addAttribute("apskritimai", zaidimas.getApskritimai());
+		//model.addAttribute("apskritimai", zaidimas.getApskritimai());
 		
 		return "greeting";
 

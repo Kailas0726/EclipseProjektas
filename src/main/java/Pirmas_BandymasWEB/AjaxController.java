@@ -30,6 +30,8 @@ public class AjaxController {
 		//zaidimas.plotoSkaiciavimas();
 		
 		zaidimas.zaidejuPlotoSkaiciavimas();
+		
+		zaidimas.arPersidengia();
 
 		//ArrayList<Apskritimas> apskritimai = zaidimas.getApskritimai();
 		

@@ -32,7 +32,7 @@ public class Apskritimas {
 		
 	}
 	
-	public Boolean arPersidengia ( Apskritimas kitas ) {
+	public boolean arPersidengia ( Apskritimas kitas ) {
 		
 		double atstumas = AtstumasNuoCentroIkiKitoCentro( kitas );
 		return atstumas < ( radius + kitas.radius );
